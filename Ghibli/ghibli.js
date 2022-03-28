@@ -1,6 +1,27 @@
 let exple = [1, 2, 3]
 let texte = ["Le chateau ambulant", "Le voyage de Chihiro", "Le vent se lève"]
 
+let films = [ 
+  {
+    titre: "Le chateau ambulant",
+    date: "2004",
+    duree: "119",
+    image: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/TkTPELv4kC3u1lkloush8skOjE.jpg"
+  },
+  {
+    titre: "Le voyage de Chihiro",
+    date: "2001",
+    duree: "124",
+    image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg'
+  },
+  {
+    titre: "Le vent se lève",
+    date: "2013",
+    duree: "126",
+    image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/jfwSexzlIzaOgxP9A8bTA6t8YYb.jpg'
+  }
+]
+
 function addElement() {
     for (i=0; i < exple.length; i++) {
     const newDiv = document.createElement("div");
