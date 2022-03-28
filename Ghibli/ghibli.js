@@ -21,18 +21,14 @@ let films = [
     image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/jfwSexzlIzaOgxP9A8bTA6t8YYb.jpg'
   }
 ]
-  
 
 function addElement() {
-    for (i=0; i < films.length; i++) {
-    const newDiv = document.createElement("div")
-    newDiv.innerHTML = '<img id="image" height="200" width="140" src="' + films[i]["image"] + '" />' + "<br />" + films[i]["titre"] + "<br />" + "Année de sortie: " + films[i]["date"] +"<br />" + "Durée en minutes: "+ films[i]["duree"]
-    document.getElementById("div").appendChild(newDiv)
+    for (i=0; i < exple.length; i++) {
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = texte[i];
+    document.getElementById("div").appendChild(newDiv);
     }
 }
-
-addElement()
-
 document.getElementById("date").innerHTML= "Trouver un film";
 let btn = document.querySelector('input');
 btn.addEventListener('click', enterDate);
@@ -50,3 +46,5 @@ function enterDate(){
             document.getElementById("date").innerHTML= "Afficher";
         }
 }
+
+addElement()

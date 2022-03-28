@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background-color: #f3f7e4;
 }
@@ -25,4 +26,29 @@ body {
     padding: 10px;
     border: 2px solid;
     border-color: #797B72;
+=======
+body {
+    background-color: #f3f7e4;
+}
+
+.flex-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #D5D8C8;
+}
+
+.flex-container > div {
+    background-color: #f3f7e4;
+    margin: 10px;
+    padding: 50px;
+    border: 2px solid;
+    border-color: #797B72;
+>>>>>>> 180d28fbf0143e41a9d7034fa765e6fe975b9fc3
 }
