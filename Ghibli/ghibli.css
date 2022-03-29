@@ -25,6 +25,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: #D5D8C8;
+    margin-top: 10px;
 }
 
 .flex-container > div {
