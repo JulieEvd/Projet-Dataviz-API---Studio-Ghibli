@@ -30,30 +30,27 @@ function addElement() {
   console.log(entree)
   if (entree!=null) {
     for (i=0; i < films.length; i++) {
-      if (films[i]["release_date"]==entree) {
-        for (i=0; i < films.length; i++) {
-          var element = document.getElementById("div")
-            while (element.firstChild) {
-                element.removeChild(element.firstChild)
-             }
-          const newDiv = document.createElement("div")
-          const poster  = document.createElement("section")
-          poster.className = "poster"
-          const resume = document.createElement("section")
-          resume.className = "resume"
-          poster.innerHTML = '<img id="image" height="200" width="140" src="' + films[i]["image"] + '" />'
-          resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
-          document.getElementById("div").appendChild(newDiv)
-          newDiv.prepend(poster)
-          newDiv.append(resume)
-          }
+        for (i=0; i <= films.length; i++) {
+        var element = document.getElementById("div")
+          while (element.firstChild) {
+              element.removeChild(element.firstChild)
+              break
+            }
+        if (films[i]["release_date"]==entree) {
+           const newDiv = document.createElement("div")
+           const poster  = document.createElement("section")
+           poster.className = "poster"
+           const resume = document.createElement("section")
+           resume.className = "resume"
+           poster.innerHTML = '<img id="image" height="200" width="140" src="' + films[i]["image"] + '" />'
+           resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
+           document.getElementById("div").appendChild(newDiv)
+           newDiv.prepend(poster)
+           newDiv.append(resume)
+           }
       }
     }
   } else {
-        //console.log("film")
-        // const newDiv = document.createElement("div")
-        // newDiv.innerHTML = films ["title"]
-        // document.getElementById("div").appendChild(newDiv)
         //  for (i=0; i < films.length; i++) {
         //    var element = document.getElementById("div")
         //      while (element.lastChild) {
