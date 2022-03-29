@@ -51,11 +51,6 @@ function addElement() {
       }
     }
   } else {
-        //  for (i=0; i < films.length; i++) {
-        //    var element = document.getElementById("div")
-        //      while (element.lastChild) {
-        //          element.removeChild(element.lastChild)
-        //      }
       for (i=0; i < films.length; i++) {
         const newDiv = document.createElement("div")
         const poster  = document.createElement("section")
@@ -73,24 +68,31 @@ function addElement() {
 }
 
 
-document.getElementById("date").innerHTML= "Trouver un film"
+document.getElementById("date").innerHTML= "Find your movie"
 let btn = document.querySelector('input')
 //btn.addEventListener('click', enterDate)
 
 function enterDate(){
-   entree= prompt("Entrez une date entre 1985 et 2021", "<Entrer votre date>")
-    if (entree==null){
-        alert("vous avez annule")
-    }
-        if (entree<1985){
-            document.getElementById("date").innerHTML= "Le studio n'existait pas encore. Il fut fondé en 1985."
-        } else if (entree>2021){
-            document.getElementById("date").innerHTML= "Le studio n'a pas fait de films après 2021"
-        } else{
-          return addElement()
-            //document.getElementById("date").innerHTML= "Afficher"
+   entree= prompt("Choose a year from 1985", "2010")
+    if (entree===null){
+        alert("You cancelled your answer")
+    } else if (entree<1985){
+        document.getElementById("date").innerHTML= "The studio wasn't founded yet. It was created in 1985."
+    } else if (entree>films[films.length-1]["release_date"]){
+        document.getElementById("date").innerHTML= "There are no new movies released after " + films[films.length-1]["release_date"]
+    } else{
+        return addElement()
+        //document.getElementById("date").innerHTML= "Afficher"
         }
 }
+
+const refreshButton = document.querySelector('.refresh-button');
+
+const refreshPage = () => {
+  location.reload()
+}
+
+refreshButton.addEventListener('click', refreshPage)
 
 
 
