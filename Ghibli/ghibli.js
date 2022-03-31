@@ -23,21 +23,22 @@
 // ]
 
 var films = JSON.parse($.ajax({'url': "https://ghibliapi.herokuapp.com/films/", 'async': false}).responseText)
-let entree
+let entree = null
 
+imgArr = ["Chihiro.gif", "Sosuke.webp", "Umi.gif", "Arren.webp", "Sophie.gif"]
 
-
+function displayImg(){
+  var num = Math.floor(Math.random() * (imgArr.length))
+  return imgArr[num]
+}
 
 function addElement() {
-  btn.addEventListener('click', enterDate)
   if (entree!=null) {
+    films = JSON.parse($.ajax({'url': "https://ghibliapi.herokuapp.com/films/", 'async': false}).responseText)
     let dateArray = films.filter(function (item){
       return item.release_date == entree
     })
     if(dateArray.length == 0) {
-      const newDiv = document.createElement("div")
-      newDiv.innerHTML = '<img src="Chihiro.gif">'
-      document.getElementById("div").appendChild(newDiv)
       for (i=0; i <= films.length; i++) {
         var element = document.getElementById("div")
           while (element.firstChild) {
@@ -45,27 +46,38 @@ function addElement() {
               break
           }
           }
+          const newDiv = document.createElement("div")
+          const randomGif = document.createElement("img")
+          randomGif.id = "gif"
+          randomGif.src = displayImg()
+          element.appendChild(newDiv)
+          newDiv.prepend(randomGif)
+          document.getElementById("date").innerHTML = "No films released this year sorry !"
+
     } else {
+      for (i=0; i <= films.length; i++) {
+      var element = document.getElementById("div")
+        while (element.firstChild) {
+        element.removeChild(element.firstChild)
+        break
+        }
+      }
     for (i=0; i < films.length; i++) {
-        for (i=0; i <= films.length; i++) {
-        var element = document.getElementById("div")
-          while (element.firstChild) {
-              element.removeChild(element.firstChild)
-              break
-          }
-        if (films[i]["release_date"]==entree) {
+        //
+          console.log(films[i])
+        if (films[i].release_date ==entree) {
            const newDiv = document.createElement("div")
            const poster  = document.createElement("section")
            poster.className = "poster"
            const resume = document.createElement("section")
            resume.className = "resume"
            poster.innerHTML = '<img id="image" height="200" width="140" src="' + films[i]["image"] + '" />'
-           resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
+           resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Director: " + films[i]["director"] + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
            document.getElementById("div").appendChild(newDiv)
            newDiv.prepend(poster)
            newDiv.append(resume)
         }
-        } 
+        //} 
         }
       }
   } else {
@@ -76,7 +88,7 @@ function addElement() {
         const resume = document.createElement("section")
         resume.className = "resume"
         poster.innerHTML = '<img id="image" height="200" width="140" src="' + films[i]["image"] + '" />'
-        resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
+        resume.innerHTML =  films[i]["title"] + "<br />" + films[i]["original_title"] + "&nbsp;" + "&nbsp;"+ films[i]["original_title_romanised"] +"<br />" + "<br />" + "Director: " + films[i]["director"] + "<br />" + "Year of release: " + films[i]["release_date"] +"<br />" + "Duration (min): "+ films[i]["running_time"] + "<br />" + "<br />" + films[i]["description"]
         document.getElementById("div").appendChild(newDiv)
         newDiv.prepend(poster)
         newDiv.append(resume)
@@ -88,6 +100,7 @@ function addElement() {
 
 document.getElementById("date").innerHTML= "Find your movie"
 let btn = document.querySelector('input')
+btn.addEventListener('click', enterDate)
 
 function enterDate(){
    entree= prompt("Choose a year from 1985", "2010")
@@ -98,8 +111,9 @@ function enterDate(){
     } else if (entree>films[films.length-1]["release_date"]){
         document.getElementById("date").innerHTML= "There are no new movies released after " + films[films.length-1]["release_date"]
     } else{
-        return addElement()
-        }
+      console.log("bla")
+      addElement()
+    }
 }
 
 const refreshButton = document.querySelector('.refresh-button');
