@@ -25,17 +25,34 @@
 var films = JSON.parse($.ajax({'url': "https://ghibliapi.herokuapp.com/films/", 'async': false}).responseText)
 let entree
 
+
+
+
 function addElement() {
   btn.addEventListener('click', enterDate)
-  console.log(entree)
   if (entree!=null) {
+    let dateArray = films.filter(function (item){
+      return item.release_date == entree
+    })
+    if(dateArray.length == 0) {
+      const newDiv = document.createElement("div")
+      newDiv.innerHTML = '<img src="Chihiro.gif">'
+      document.getElementById("div").appendChild(newDiv)
+      for (i=0; i <= films.length; i++) {
+        var element = document.getElementById("div")
+          while (element.firstChild) {
+              element.removeChild(element.firstChild)
+              break
+          }
+          }
+    } else {
     for (i=0; i < films.length; i++) {
         for (i=0; i <= films.length; i++) {
         var element = document.getElementById("div")
           while (element.firstChild) {
               element.removeChild(element.firstChild)
               break
-            }
+          }
         if (films[i]["release_date"]==entree) {
            const newDiv = document.createElement("div")
            const poster  = document.createElement("section")
@@ -47,9 +64,10 @@ function addElement() {
            document.getElementById("div").appendChild(newDiv)
            newDiv.prepend(poster)
            newDiv.append(resume)
-           }
+        }
+        } 
+        }
       }
-    }
   } else {
       for (i=0; i < films.length; i++) {
         const newDiv = document.createElement("div")
@@ -70,7 +88,6 @@ function addElement() {
 
 document.getElementById("date").innerHTML= "Find your movie"
 let btn = document.querySelector('input')
-//btn.addEventListener('click', enterDate)
 
 function enterDate(){
    entree= prompt("Choose a year from 1985", "2010")
@@ -82,7 +99,6 @@ function enterDate(){
         document.getElementById("date").innerHTML= "There are no new movies released after " + films[films.length-1]["release_date"]
     } else{
         return addElement()
-        //document.getElementById("date").innerHTML= "Afficher"
         }
 }
 
@@ -94,11 +110,4 @@ const refreshPage = () => {
 
 refreshButton.addEventListener('click', refreshPage)
 
-
-
 addElement()
-
-
-
- 
-//document.getElementById("example").innerHTML = json[0]["release_date"]
